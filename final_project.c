@@ -107,7 +107,7 @@ void Data(){
 		for(i=0; i<z; i++){
 			printf("n:Press 1 for faculty or 0 for student "); scanf("%d",&Queryt);
 			if(Queryt==1){
-				printf("Query Id: "); scanf("%d", &fqueue[zfc].Job_id);
+				printf("faculty Query Id: "); scanf("%d", &fqueue[zfc].Job_id);
 				printf("Arrival Time: "); scanf("%d", &k);
 				if(k<1000 || k>1200){
 					printf("\n Entered wrong slot time ");
@@ -117,7 +117,7 @@ void Data(){
 				printf("Burst time: "); scanf("%d", &fqueue[zfc].Bur_time);	 fqueue[zfc].Remain_time= fqueue[zfc].Bur_time; 
 				zfc++;
 			} else{
-				printf("Query Id: "); scanf("%d", &squeue[zsc].Job_id);
+				printf(" student Query Id: "); scanf("%d", &squeue[zsc].Job_id);
 				printf("Arrival Time: "); scanf("%d", &k); 
 				if(k<1000 || k>1200){
 					printf("\nEntered wrong slot time\n");
