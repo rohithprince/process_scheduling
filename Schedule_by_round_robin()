@@ -1,0 +1,24 @@
+void Schedule_by_round_robin(){
+	int time= rqueue[0].Arri_time, cont=0, pp=0, i, prc;
+	while(time!=120 && pp!=readycount){
+		for(i=0; i<=cont; i++){
+			if(rqueue[i].Remain_time > timequantum){
+				time=time + timequantum;
+				rqueue[i].Remain_time -= timequantum;
+			}
+			else if(rqueue[i].Remain_time <=timequantum && rqueue[i].Remain_time !=0){
+				time += rqueue[i].Remain_time;
+				rqueue[i].Remain_time =0;
+				rqueue[i].Complet_time = time;
+				pp++;
+			}
+			else;
+		}
+		int first = cont+1;
+		for(prc= first; prc<readycount; prc++){
+			if(rqueue[prc].Arri_time <= time){
+				cont++;
+			}
+		}
+	}	
+}
