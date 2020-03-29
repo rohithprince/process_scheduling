@@ -1,0 +1,91 @@
+void Taking_input_both_queues(){
+	int aic=0, bic= 0, Minimum, Flag;
+	if( zfc!=0  && zsc!=0){
+		while(aic<zsc && bic<zfc){
+			if(fqueue[bic].Arri_time == squeue[aic].Arri_time){
+				rqueue[readycount] = fqueue[bic];
+				readycount++;
+				bic++;
+				rqueue[readycount]= squeue[aic];
+				readycount++;
+				aic++;
+			}
+			else if(fqueue[bic].Arri_time < squeue[aic].Arri_time){
+				rqueue[readycount]= fqueue[bic];
+				readycount++;
+				bic++;
+			}
+			else if(fqueue[bic].Arri_time > squeue[aic].Arri_time){
+				rqueue[readycount]= squeue[aic];
+				readycount++;
+				aic++;
+			}
+			else;
+		}
+		if(readycount != (zfc+zsc)){
+			if(zfc!=bic){
+				while(bic!=zfc){
+					rqueue[readycount]= fqueue[bic];
+					readycount++;
+					bic++;
+				}
+			}
+			else if(zsc!=aic){
+				while(aic!=zsc){
+					rqueue[readycount]= squeue[aic];
+					readycount++;
+					aic++;
+				}
+			}
+		}
+	}
+	else if(zfc==0){
+		while(aic!=zsc){
+			rqueue[readycount]= squeue[aic];
+			readycount++;
+			aic++;
+		}
+	}
+	else if(zsc==0){
+		while(bic!=zfc){
+		rqueue[readycount]= fqueue[bic];
+			readycount++;
+			bic++;
+		}
+	}
+	else {
+		printf("\n No valid Jobs available\n");
+	}}
+void Data(){
+	
+	int Queryt,i, k;
+	printf("Enter total no of queries: "); scanf("%d", &z);
+	if(z==0) { printf("\n No queries has be accepeted\n"); }
+	else{
+		printf("\nEnter timequantum for each Process: "); scanf("%d", &timequantum);
+		
+		for(i=0; i<z; i++){
+			printf("n:Press 1(faculty) or 0(student) "); scanf("%d",&Queryt);
+			if(Queryt==1){
+				printf("Query Id: "); scanf("%d", &fqueue[zfc].Job_id);
+				printf("Arrival Time: "); scanf("%d", &k);
+				if(k<1000 || k>1200){
+					printf("\n Entered wrong slot time ");
+					Data();
+				}
+				else{fqueue[zfc].Arri_time= k-1000;}
+				printf("Burst time: "); scanf("%d", &fqueue[zfc].Bur_time);	 fqueue[zfc].Remain_time= fqueue[zfc].Bur_time; 
+				zfc++;
+			} else{
+				printf("Query Id: "); scanf("%d", &squeue[zsc].Job_id);
+				printf("Arrival Time: "); scanf("%d", &k); 
+				if(k<1000 || k>1200){
+					printf("\nEntered wrong slot time\n");
+					Data();
+				}
+				else {squeue[zsc].Arri_time= k-1000; }
+				printf("Burst time: "); scanf("%d", &squeue[zsc].Bur_time);	 squeue[zsc].Remain_time= squeue[zsc].Bur_time;
+				zsc++;
+			}
+		}
+	}}
