@@ -105,7 +105,7 @@ void Data(){
 		printf("\nEnter timequantum for each Process: "); scanf("%d", &timequantum);
 		
 		for(i=0; i<z; i++){
-			printf("n:Press 1(faculty) or 0(student) "); scanf("%d",&Queryt);
+			printf("n:Press 1 for faculty or 0 for student "); scanf("%d",&Queryt);
 			if(Queryt==1){
 				printf("Query Id: "); scanf("%d", &fqueue[zfc].Job_id);
 				printf("Arrival Time: "); scanf("%d", &k);
